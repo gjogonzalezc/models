@@ -2,7 +2,7 @@ channels:
   - pytorch
 dependencies:
   - python=3.6
-  - pytorch=0.4.0
+  - pytorch=0.4.1
   - torchvision=0.2.1
   - pip:
     - pipeline-runtime==1.0.8

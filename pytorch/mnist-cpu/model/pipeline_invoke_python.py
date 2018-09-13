@@ -22,7 +22,7 @@ __all__ = ['invoke']
 
 _labels = {
            'model_name': 'mnist',
-           'model_tag': 'v1',
+           'model_tag': 'cpu',
            'model_type': 'pytorch',
            'model_runtime': 'python',
            'model_chip': 'cpu',
@@ -90,7 +90,13 @@ def _transform_request(request):
 
 
 def _transform_response(response):
-    print(response)
-    response_np = response.data.numpy().tolist()[0]
-    print(response_np)
-    return json.dumps({"outputs": response_np})
+    response_np = response.data.numpy()
+    # TODO:  Normalize the probabilities between 0.0 and 1.0
+    return json.dumps({"classes": [int(np.argmax(response_np[0]))], "probabilities": response_np.tolist()})
+
+
+if __name__ == '__main__':
+    with open('./pipeline_test_request.json', 'rb') as fb:
+        request_bytes = fb.read()
+        response_bytes = invoke(request_bytes)
+        print(response_bytes)

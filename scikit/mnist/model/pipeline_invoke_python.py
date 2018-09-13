@@ -50,10 +50,17 @@ def _transform_request(request):
     request_json = json.loads(request_str)
     request_np = np.array(request_json['image'], dtype=np.uint8)
     request_np = request_np.reshape(1, 784)
-    print(request_np)
     return request_np
 
 
 def _transform_response(response):
-    response_np = response.data.tolist()[0]
-    return json.dumps({"classes": response_np})
+    response_np = response.data.tolist()
+    response_json = json.dumps({"classes": response_np, "probabilities": [[]]})
+    return response_json
+
+
+if __name__ == '__main__':
+    with open('./pipeline_test_request.json', 'rb') as fb:
+        request_bytes = fb.read()
+        response_bytes = invoke(request_bytes)
+        print(response_bytes)

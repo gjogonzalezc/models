@@ -1,7 +1,5 @@
 .idea/
 basicdnn*
-e30e79aa*
-c6014421*
 *.tar.gz
 .project
 .pydevproject
@@ -17,4 +15,5 @@ runs/
 generated-*
 .pipeline-generated-*
 .DS_Store
-e30e79aa*
+83f05e58*
+c6014421*

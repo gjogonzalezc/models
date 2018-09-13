@@ -66,3 +66,10 @@ def _transform_request(request):
 @monitor(labels=_labels, name="transform_response")
 def _transform_response(response):
     return ujson.dumps(response.tolist())
+
+
+if __name__ == '__main__':
+    with open('./pipeline_test_request.json', 'rb') as fb:
+        request_bytes = fb.read()
+        response_bytes = invoke(request_bytes)
+        print(response_bytes)
