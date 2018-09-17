@@ -59,7 +59,6 @@ def invoke(request):
                                 containing a list of classes and a list of probabilities
     """
     try:
-
         with monitor(labels=_labels, name="transform_request"):
             transformed_request = _transform_request(request)
 
@@ -77,6 +76,9 @@ def invoke(request):
 
 def _transform_request(request):
     _logger.info('_transform_request: request: %s' % request)
+
+    # TODO:  Possibly base64 decode if using base64 encoding in the UI
+
 
     # channels indicates the desired number of color channels for the decoded image.
     #
