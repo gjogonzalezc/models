@@ -64,7 +64,7 @@ def invoke(request):
             timeout=timeout_seconds
         )
 
-        url_model_c = 'https://community.cloud.pipeline.ai/predict/83f05e58/mnist/invoke'
+        url_model_c = 'https://community.cloud.pipeline.ai/predict/83f05e58/mnistc/invoke'
         response_c = requests.post(
             url=url_model_c,
             data=transformed_request,
@@ -79,7 +79,7 @@ def invoke(request):
     response = [response_a.json(), response_b.json(), response_c.json()]
 
     with monitor(labels=_labels, name="transform_response"):
-        transformed_response = _transform_response(response)
+        transformed_response = _transform_responsei(response_a, response_b, response_c)
 
     return transformed_response
 
@@ -92,11 +92,23 @@ def _transform_request(request):
     return request
 
 
-def _transform_response(response):
+def _transform_response(response_a, response_b, response_c):
 #    return json.dumps({"classes": response['classes'].tolist(),
 #                       "probabilities": response['probabilities'].tolist(),
 #                      })
-    return response
+    # TODO:  Apply quorum aggregator function vs. hard-coding to class_c 
+    class_a_list = response_a['classes']
+    class_b_list = response_b['classes']
+    class_c_list = response_c['classes']
+    
+    # TODO:  Aggregate probabilities? 
+    probabilities_a_list_list = response_a['probabilities']
+    probabilities_b_list_list = response_b['probabilities']
+    probabilities_c_list_list = response_c['probabilities']
+
+    # TODO:  
+    return json.dumps({"classes": class_c_list,
+                       "probabilities": probabilities_c_list_list})
 
 
 # Note:  This is a mini test
