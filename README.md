@@ -14,4 +14,6 @@ Train and Deploy your ML and AI Models in the Following Environments:
 * YouTube:  https://youtube.pipeline.ai
 * Slideshare:  https://slideshare.pipeline.ai
 * Workshop:  https://workshop.pipeline.ai
+* Meetup:  https://meetup.pipeline.ai
+* Webinar:  https://webinar.pipeline.ai
 * [Troubleshooting Guide](/docs/troubleshooting)
