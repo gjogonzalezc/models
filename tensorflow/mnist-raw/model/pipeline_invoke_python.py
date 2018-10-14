@@ -1,4 +1,4 @@
-# ------------- Builtin imports --------------------------------------------------------------------
+## ------------- Builtin imports --------------------------------------------------------------------
 import json
 import logging
 
@@ -81,11 +81,24 @@ def _transform_request(request):
     # (See http://freeonlinetools24.com/base64-image for more details)
     request = request.decode('utf-8')
     if (request.startswith('data:')):
-        request = request.split('base64,')[1]
+#        request = request.split('base64,')[1]
+        request = request.split('data:')[1]
+        image_type = request.split(';')[0]
+        request = request.split(';')[1].split('base64,')[1]
+        request = base64.b64decode(request, validate=True)
 
-    request = base64.b64decode(request, validate=True)
+    # TODO:  Replace this with tf.image.decode_image() once we move to ArrayBuffer in the UI
+    #        decode_image() doesn't work with the current request format (data: transformed above) for some reason
+    if image_type == 'image/png':
+        request_image_tensor = tf.image.decode_png(request, channels=1)
+    if image_type == 'image/jpg':
+        request_image_tensor = tf.image.decode_jpeg(request, channels=1)
+    if image_type == 'image/bmp':
+        request_image_tensor = tf.image.decode_bmp(request, channels=1)
+# TODO:  Handle gif differently per this doc: https://www.tensorflow.org/api_docs/python/tf/image/decode_image
+#    if image_type == 'image/gif':
+#        request_image_tensor = tf.image.decode_gif(request, channels=1)
 
-    request_image_tensor = tf.image.decode_png(request, channels=1)
     request_image_tensor_resized = tf.image.resize_images(request_image_tensor, size=[28, 28])
 
     sess = tf.Session()
