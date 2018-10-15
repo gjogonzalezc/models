@@ -1,3 +1,7 @@
+// Derived from the following:
+//    https://github.com/combust/mleap/wiki/Serializing-a-Spark-ML-Pipeline-and-Scoring-with-MLeap
+//    https://github.com/combust/mleap-docs/blob/master/demos/mnist.md
+
 // Note that we are taking advantage of com.databricks:spark-csv package to load the data
 import org.apache.spark.ml.feature.{VectorAssembler,StringIndexer,IndexToString, Binarizer}
 import org.apache.spark.ml.classification.{RandomForestClassificationModel, RandomForestClassifier}
@@ -30,6 +34,7 @@ object PipelineTrain {
  def main(args: Array[String]): Unit = {
   val spark = SparkSession
    .builder()
+   .master("local[2]")
    .appName("Spark")
    .getOrCreate()
 
@@ -95,8 +100,8 @@ object PipelineTrain {
 
   val pipeline = SparkUtil.createPipelineModel(uid = "pipeline", Array(featureModel, rfModel))
 
-  val sbc = SparkBundleContext()
-  for(bf <- managed(BundleFile("jar:file:./mnist-spark-pipeline.zip"))) {
+  val sbc = SparkBundleContext().withDataset(rfModel.transform(datasetWithFeatures))
+  for (bf <- managed(BundleFile("jar:file:/tmp/mnist-spark-pipeline.zip"))) {
         pipeline.writeBundle.save(bf)(sbc).get
   }
 }

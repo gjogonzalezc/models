@@ -17,8 +17,6 @@ lazy val settings = (project in file("."))
                     .settings(globalSettings:_*)
                     .settings(libraryDependencies ++= deps)
 
-mainClass in (Compile, run) := Some("PipelineInvokeJvm")
-
 val mleapVersion = "0.12.0"
 val sparkVersion = "2.3.2"
 

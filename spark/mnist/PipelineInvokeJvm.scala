@@ -25,18 +25,17 @@ object PipelineInvokeJvm {
 
  def main(args: Array[String]): Unit = {
   // load the Spark pipeline we saved in the previous section
-  val mleapPipeline = (for(bf <- managed(BundleFile("jar:file:./mnist-spark-pipeline.zip"))) yield {
+  val mleapPipeline = (for(bf <- managed(BundleFile("jar:file:/tmp/mnist-spark-pipeline.zip"))) yield {
       bf.loadMleapBundle().get.root
     }).tried.get
 
-  val s = scala.io.Source.fromURL("file:///./pipeline_request_input.json").mkString
+  val s = scala.io.Source.fromURL("file:///./pipeline_test_request.json").mkString
 
   val bytes = s.getBytes("UTF-8")
-  val frame = FrameReader("pipeline_request_input.json").fromBytes(bytes)
+  val frame = FrameReader("pipeline_test_request.json").fromBytes(bytes)
 
   // transform the dataframe using our pipeline
-  val frame2 = mleapPipeline.transform(frame).get
-  val data = frame2.dataset
-  System.println(data)
+//  val frame2 = mleapPipeline.transform(frame).get
+//  val data = frame2.dataset
 }
 }
