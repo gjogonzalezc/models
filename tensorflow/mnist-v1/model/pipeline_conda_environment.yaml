@@ -4,4 +4,4 @@ dependencies:
     - grpcio>=1.0
     - tensorflow==1.12.0-rc1
     - pipeline-runtime==1.0.8
-    - requests=2.20.0
+    - requests==2.20.0
