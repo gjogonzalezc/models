@@ -29,12 +29,13 @@ import org.apache.spark.ml.mleap.SparkUtil
 // For implicit conversions like converting RDDs to DataFrames
 // import spark.implicits._
 
-object PipelineTrain {
+object pipeline_train {
 
- def main(args: Array[String]): Unit = {
+def main(args: Array[String]): Unit = {
   val spark = SparkSession
    .builder()
-   .master("local[2]")
+// 2 threads doesn't seem to work well
+   .master("local[4]")
    .appName("Spark")
    .getOrCreate()
 
@@ -101,9 +102,13 @@ object PipelineTrain {
   val pipeline = SparkUtil.createPipelineModel(uid = "pipeline", Array(featureModel, rfModel))
 
   val sbc = SparkBundleContext().withDataset(rfModel.transform(datasetWithFeatures))
+
+  // There is a wonky limitation of BundleFile that requires 
+  //   this filename parameter to start at the /root/directory
+  // Also, it doesn't let you overwrite it
   for (bf <- managed(BundleFile("jar:file:/tmp/mnist-spark-pipeline.zip"))) {
         pipeline.writeBundle.save(bf)(sbc).get
   }
-}
+ }
 }
 
