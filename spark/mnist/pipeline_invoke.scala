@@ -31,13 +31,13 @@ def main(args: Array[String]): Unit = {
       bf.loadMleapBundle().get.root
     }).tried.get
 
-  val s = scala.io.Source.fromURL("file:///./pipeline_test_request.json").mkString
+  val s = scala.io.Source.fromFile("pipeline_test_request.json").mkString
 
   val bytes = s.getBytes("UTF-8")
-  val frame = FrameReader("pipeline_test_request.json").fromBytes(bytes)
+  val frame = FrameReader("ml.combust.mleap.json").fromBytes(bytes)
 
   // transform the dataframe using our pipeline
-//  val frame2 = mleapPipeline.transform(frame).get
-//  val data = frame2.dataset
+  val frame2 = mleapPipeline.transform(frame).get
+  val data = frame2.dataset
 }
 }

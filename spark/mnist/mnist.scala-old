@@ -4,13 +4,13 @@ import org.apache.spark.ml.evaluation.{MulticlassClassificationEvaluator}
 import org.apache.spark.ml.{Pipeline,PipelineModel}  
 import org.apache.spark.ml.feature.PCA
 
-val datasetPath = "./mnistdata/mnist_train.csv"
+val datasetPath = "./mnist_train.csv"
 var dataset = spark.sqlContext.read.format("com.databricks.spark.csv").
                  option("header", "true").
                  option("inferSchema", "true").
                  load(datasetPath)
                  
-val testDatasetPath = "./mnistdata/mnist_test.csv"
+val testDatasetPath = "./mnist_test.csv"
 var test = spark.sqlContext.read.format("com.databricks.spark.csv").
                  option("inferSchema", "true").
                  option("header", "true").

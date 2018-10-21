@@ -10,7 +10,6 @@ import org.apache.spark.ml.{Pipeline,PipelineModel}
 import org.apache.spark.ml.feature.PCA
 
 import ml.combust.mleap.runtime.MleapSupport
-import ml.combust.bundle.BundleFile
 import org.apache.spark.sql.SparkSession
 
 // MLeap/Bundle.ML Serialization Libraries
