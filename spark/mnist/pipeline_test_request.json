@@ -1,6 +1,7 @@
 {
  "rows": [
       [
+         0,
          0.0, 
          0.0, 
          0.0, 
@@ -790,6 +791,7 @@
  "schema": {
    "fields": 
    [
+    {"type": "integer", "name" : "label"},
     {"type": "double","name": "x0"},
     {"type": "double","name": "x1"},
     {"type": "double","name": "x2"},
