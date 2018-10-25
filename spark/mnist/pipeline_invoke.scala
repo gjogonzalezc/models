@@ -31,6 +31,8 @@ object pipeline_invoke {
       bf.loadMleapBundle().get.root
     }).tried.get
 
+    println(mleapPipeline)
+
     val s = scala.io.Source.fromFile("pipeline_test_request.json").mkString
     val bytes = s.getBytes("UTF-8")
 
