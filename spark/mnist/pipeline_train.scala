@@ -70,6 +70,12 @@ def main(args: Array[String]): Unit = {
       .fit(dataset)
   }
   
+   val rstringIndexer = {
+      new IndexToString()
+      .setInputCol(predictionCol)
+      .setOutputCol("label_index")
+  }
+  
   val binarizer = new Binarizer()  
     .setInputCol(vector_assembler.getOutputCol)
     .setThreshold(127.5)
@@ -88,12 +94,12 @@ def main(args: Array[String]): Unit = {
   val datasetWithFeatures = featureModel.transform(dataset)
 
   // Select only the data needed for training and persist it
-  val datasetPcaFeaturesOnly = datasetWithFeatures.select(stringIndexer.getOutputCol, pca.getOutputCol)
+  val datasetPcaFeaturesOnly = datasetWithFeatures.select(rstringIndexer.getOutputCol, pca.getOutputCol)
   val datasetPcaFeaturesOnlyPersisted = datasetPcaFeaturesOnly.persist()
 
   val rf = new RandomForestClassifier().
       setFeaturesCol(pca.getOutputCol).
-      setLabelCol(stringIndexer.getOutputCol).
+      setLabelCol(rstringIndexer.getOutputCol).
       setPredictionCol("prediction").
       setProbabilityCol("probability").
       setRawPredictionCol("raw_prediction")
