@@ -61,13 +61,13 @@ def main(args: Array[String]): Unit = {
     .setInputCols(pixelFeatures)
     .setOutputCol("features")
 
-  //val stringIndexer = { 
-  //  new StringIndexer()
-  val stringIndexer = {
-      new IndexToString()
+  val stringIndexer = { 
+    new StringIndexer()
+  //val stringIndexer = {
+  //    new IndexToString()
       .setInputCol(predictionCol)
       .setOutputCol("label_index")
-      //.fit(dataset)
+      .fit(dataset)
   }
   
   val binarizer = new Binarizer()  
