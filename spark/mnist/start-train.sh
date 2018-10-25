@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rm /tmp/mnist-spark-pipeline.zip
+rm /tmp/pipeline_bundle.zip
 
 sbt "runMain pipeline_train" 

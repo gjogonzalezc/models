@@ -113,7 +113,7 @@ def main(args: Array[String]): Unit = {
   // There is a wonky limitation of BundleFile that requires 
   //   this filename parameter to start at the /root/directory
   // Also, it doesn't let you overwrite it
-  for (bf <- managed(BundleFile("jar:file:/tmp/mnist-spark-pipeline.zip"))) {
+  for (bf <- managed(BundleFile("jar:file:/tmp/pipeline_bundle.zip"))) {
         pipeline.writeBundle.save(bf)(sbc).get
   }
  }

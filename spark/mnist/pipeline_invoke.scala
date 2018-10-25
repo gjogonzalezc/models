@@ -27,7 +27,8 @@ object pipeline_invoke {
     // load the Spark pipeline we saved in the previous section
     // There is a wonky limitation of BundleFile that requires
     //   this filename parameter to start at the /root/directory
-    val mleapPipeline = (for(bf <- managed(BundleFile("jar:file:/tmp/mnist-spark-pipeline.zip"))) yield {
+
+    val mleapPipeline = (for(bf <- managed(BundleFile("jar:file:/tmp/pipeline_bundle.zip"))) yield {
       bf.loadMleapBundle().get.root
     }).tried.get
 
