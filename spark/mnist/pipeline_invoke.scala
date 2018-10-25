@@ -31,21 +31,12 @@ object pipeline_invoke {
       bf.loadMleapBundle().get.root
     }).tried.get
 
-    println("***BLAH***" + mleapPipeline.getClass)
-    println("")
     val s = scala.io.Source.fromFile("pipeline_test_request.json").mkString
     val bytes = s.getBytes("UTF-8")
 
-//    println(s)
-//    println(bytes)
-
     val frame = FrameReader("ml.combust.mleap.json").fromBytes(bytes)
-
     val transformed_frame = mleapPipeline.transform(frame.get)
-//    print(transformed_frame)
     val data = transformed_frame.get.dataset
-    println(data.getClass)
-    println("")
     println(data)
   }
 }
