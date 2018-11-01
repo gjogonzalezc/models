@@ -5,13 +5,19 @@ from sklearn.model_selection import train_test_split, cross_val_score, GridSearc
 from sklearn.externals import joblib
 from os import path, environ as env
 from scipy.io import loadmat
+import requests
 
 model_path = './model.pkl'
 
 if __name__ == '__main__':
     print('Fetching and loading MNIST data')
 
+    url = 'https://s3.amazonaws.com/datapalooza/mnist/mnist-original.mat'
+    request = requests.get(url, allow_redirects=True)
+
     mnist_path = './mnist-original.mat'
+    open(mnist_path, 'wb').write(request.content)
+
     mnist_raw = loadmat(mnist_path)
     mnist = {
         "data": mnist_raw["data"].T,
