@@ -20,11 +20,12 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'zscore',
-           'model_tag': 'v1',
-           'model_type': 'python',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'zscore',
+           'tag': 'v1',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'python',
           }
 
 

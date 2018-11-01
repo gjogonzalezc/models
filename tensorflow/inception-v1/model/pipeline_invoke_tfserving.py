@@ -22,13 +22,13 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'inception',
-           'model_tag': 'v1',
-           'model_type': 'tensorflow',
-           'model_runtime': 'tfserving',
-           'model_chip': 'cpu',
-         }
-
+           'name': 'inception',
+           'tag': 'v1',
+           'runtime': 'tfserving',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'tensorflow',
+          }
 
 def _initialize_upon_import():
     """ Initialize / Restore Model Object.

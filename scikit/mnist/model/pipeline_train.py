@@ -42,7 +42,7 @@ if __name__ == '__main__':
         print('Training model.')
         params = {'hidden_layer_sizes': [(256,), (512,), (128, 256, 128,)]}
         mlp = MLPClassifier(verbose=10, learning_rate='adaptive')
-        clf = GridSearchCV(mlp, params, verbose=10, n_jobs=-1, cv=5)
+        clf = GridSearchCV(mlp, params, verbose=10, n_jobs=-1, cv=2)
         clf.fit(X_train, y_train)
         print('Finished with grid search with best mean cross-validated score:', clf.best_score_)
         print('Best params appeared to be', clf.best_params_)

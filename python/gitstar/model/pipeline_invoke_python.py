@@ -15,12 +15,14 @@ _logger.addHandler(_logger_stream_handler)
 
 __all__ = ['invoke']
 
+
 _labels = {
-           'model_name': 'gitstar',
-           'model_tag': 'v1',
-           'model_type': 'python',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'gitstar',
+           'tag': 'v1',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'python',
           }
 
 #_stream_url = 'http://stream-gitstar-v1:8082' 

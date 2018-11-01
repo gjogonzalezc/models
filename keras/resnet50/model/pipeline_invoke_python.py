@@ -24,12 +24,14 @@ __all__ = ['invoke']
 
 
 # Performance monitors, a-la prometheus...
+
 _labels = {
-           'model_name': 'resnet50',
-           'model_name': 'v1',
-           'model_type': 'keras',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'resnet50',
+           'tag': 'v1',
+           'runtime': 'runtimes',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'keras',
           }
 
 

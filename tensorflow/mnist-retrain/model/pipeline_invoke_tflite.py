@@ -20,13 +20,13 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'mnist',
-           'model_tag': 'retrain',
-           'model_type': 'tensorflow',
-           'model_runtime': 'tflite',
-           'model_chip': 'cpu',
+           'name': 'mnist',
+           'tag': 'retrain',
+           'runtime': 'tflite',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'tensorflow',
           }
-
 
 def _initialize_upon_import():
     """ Initialize / Restore Model Object.

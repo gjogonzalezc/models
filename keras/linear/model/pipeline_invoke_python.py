@@ -22,11 +22,12 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'linear',
-           'model_tag': 'v1',
-           'model_type': 'keras',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'linear',
+           'tag': 'v1',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'keras',
           }
 
 def _initialize_upon_import(model_state_path):

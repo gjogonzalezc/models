@@ -18,11 +18,12 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'mnist',
-           'model_tag': 'ensemble',
-           'model_type': 'python',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'mnist',
+           'tag': 'ensemble',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'python',
           }
 
 # There is no model to import.

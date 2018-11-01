@@ -20,11 +20,12 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'mnist',
-           'model_tag': 'retrain',
-           'model_type': 'tensorflow',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'mnist',
+           'tag': 'retrain',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'tensorflow',
           }
 
 

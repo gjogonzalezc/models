@@ -16,12 +16,14 @@ _logger.addHandler(_logger_stream_handler)
 
 __all__ = ['invoke']
 
+
 _labels = {
-           'model_name': 'mnist',
-           'model_tag': 'cpu',
-           'model_type': 'mxnet',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'mnist',
+           'tag': 'v1',
+           'runtime': 'mxnet',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'mxnet',
           }
 
 

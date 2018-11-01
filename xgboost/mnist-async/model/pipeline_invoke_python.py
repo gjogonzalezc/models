@@ -29,11 +29,12 @@ __all__ = ['invoke']
 
 
 _labels = {
-           'model_name': 'mnist',
-           'model_tag': 'async',
-           'model_type': 'xgboost',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'mnist',
+           'tag': 'async',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'xgboost',
           }
 
 

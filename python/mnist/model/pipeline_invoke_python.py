@@ -25,15 +25,14 @@ _logger.addHandler(_logger_stream_handler)
 
 __all__ = ['invoke']
 
-
 _labels = {
-           'model_name': 'mnist',
-           'model_tag': 'v1',
-           'model_type': 'python',
-           'model_runtime': 'python',
-           'model_chip': 'cpu',
+           'name': 'mnist',
+           'tag': 'v1',
+           'runtime': 'python',
+           'chip': 'cpu',
+           'resource_type': 'model',
+           'resource_subtype': 'python',
           }
-
 
 def _initialize_upon_import(file_name: str=None, train_datetime: str=None) -> xgb.core.Booster:
     """
