@@ -38,16 +38,21 @@ _labels = {
 
 #_slack_url = 'http://hooks.slack.com:443/services/T6QHWMRD4/B9KNAA0BS/dsglc5SFARz3hISU4pDlAms3'
 
+#curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!", "channel": "#demo-community"}' https://hooks.slack.com/services/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
+
 @log(labels=_labels, logger=_logger)
 def invoke(request):
     with monitor(labels=_labels, name="invoke"):
 
         request_str = request.decode('utf-8')
-        print(request_str)
-
+#        print(request_str)
+#        return json.loads(request_str)['sender']
         avatar_url = json.loads(request_str)['sender']['avatar_url']
-        print(avatar_url)
-        
+#        print(avatar_url)
+#        return avatar_url 
+
+
+       
 #        stream_body = '{"records": [{"value":%s}]}' % request_str
 #        response = requests.post(url=_stream_endpoint_url,
 #                                 headers=_stream_accept_and_content_type_headers,
@@ -65,7 +70,7 @@ def invoke(request):
 
 #        response = response.text
 
-        cmd = 'curl -X POST --data-urlencode "payload={\\"unfurl_links\\": true, \\"channel\\": \\"#demo-community\\", \\"username\\": \\"pipelineai_bot\\", \\"text\\": \\"%s\\"}" https://hooks.slack.com/services/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' % avatar_url 
+        cmd = 'curl -X POST --data-urlencode "payload={\\"unfurl_links\\": true, \\"channel\\": \\"#demo-community\\", \\"username\\": \\"pipelineai_bot\\", \\"text\\": \\"%s\\"}" https://hooks.slack.com/services/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' % avatar_url 
         print(cmd)
         import subprocess
         response = subprocess.check_output(cmd, shell=True).decode('utf-8')
@@ -93,6 +98,12 @@ def invoke(request):
 #        )
 
         return {'response': response}
+
+if __name__ == '__main__':
+    with open('./pipeline_test_request.json', 'rb') as fh:
+        contents_binary = fh.read()
+
+        print(invoke(contents_binary))
 
 # TODO:  create _transform_request(), _transform_response()
 
