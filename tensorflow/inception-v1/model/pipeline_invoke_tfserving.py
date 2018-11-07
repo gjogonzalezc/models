@@ -67,10 +67,11 @@ def _transform_request(request):
     request_str = request.decode('utf-8')
     request_json = json.loads(request_str)
 
-#    image_url = request_json['image_url']
-#    image = Image.open(requests.get(image_url, stream=True).raw)
+    image_url = request_json['image_url']
+    image = Image.open(requests.get(image_url, stream=True).raw)
+    print(image)
 
-    image_response = requests.get(request_json['image_url'])
+#    image_response = requests.get(request_json['image_url'])
 #    with BytesIO(image_response.content) as f:
 #        with Image.open(f) as img:
 #            print(img)
@@ -78,16 +79,16 @@ def _transform_request(request):
 
 #    image_file_path = '%s/images/fregly_avatar.jpg' % os.environ['PIPELINE_INPUT_PATH']
 
-    from datetime import datetime
-    version = int(datetime.now().strftime("%s"))
+#    from datetime import datetime
+#    version = int(datetime.now().strftime("%s"))
 
-    image_file_path = 'blah-%s.jpg' % version
+#    image_file_path = 'blah-%s.jpg' % version
 
-    with open(image_file_path, 'wb') as f:
-        f.write(image_response.content)
+#    with open(image_file_path, 'wb') as f:
+#        f.write(image_response.content)
 
-    with open(image_file_path, 'rb') as f:
-        image = f.read()
+#    with open(image_file_path, 'rb') as f:
+#        image = f.read()
 
 # TODO:  https://towardsdatascience.com/tensorflow-serving-client-make-it-slimmer-and-faster-b3e5f71208fb
 #        https://github.com/Vetal1977/tf_serving_example/tree/master/tensorflow/core/framework
@@ -125,4 +126,11 @@ def _transform_response(response):
             "scores": score_list}
 
 
-#predict(b'{"image_url": "https://avatars1.githubusercontent.com/u/1438064?s=460&v=4"}')
+if __name__ == '__main__':
+    with open('./pipeline_test_request.json', 'rb') as fb:
+        request_bytes = fb.read()
+        response_json = invoke(request_bytes)
+        print(response_json)
+
+#   # This is how the browser sends the image...
+#   invoke(b'{"image_url": "https://avatars1.githubusercontent.com/u/1438064?s=460&v=4"}')
