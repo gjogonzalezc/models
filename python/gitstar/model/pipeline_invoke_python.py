@@ -32,23 +32,9 @@ def invoke(request):
         request_str = request.decode('utf-8')
         avatar_url = json.loads(request_str)['sender']['avatar_url']
 
-        cmd = 'curl -X POST --data-urlencode "payload={\\"unfurl_links\\": true, \\"channel\\": \\"#demo-community\\", \\"username\\": \\"pipelineai_bot\\", \\"text\\": \\"%s\\"}" https://hooks.slack.com/services/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' % avatar_url
-        print(cmd)
+        cmd = 'curl -X POST --data-urlencode "payload={\\"unfurl_links\\": true, \\"channel\\": \\"#demo-community\\", \\"username\\": \\"pipelineai_bot\\", \\"text\\": \\"%s\\"}" https://hooks.slack.com/services/T6Qxxx/BDVxxx/8Vhxxx' % avatar_url
         import subprocess
         response = subprocess.check_output(cmd, shell=True).decode('utf-8')
-
-#        payload = {
-#                   "unfurl_links": "true",
-#                   "channel": "#demo-community",
-#                   "username": "pipelineai_bot",
-#                   "text": "%s" % avatar_url
-#                  }
-
-#        response = requests.post(
-#                                 url='https://hooks.slack.com/services/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',
-#                                 data=payload
-#                                )
-#        response = response.text
 
         return {'response': response}
 
