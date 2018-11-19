@@ -5,12 +5,12 @@ import pickle
 def init_flags():
     global FLAGS
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data-dir", default="/tmp/MNIST_data",)
-    parser.add_argument("--run-dir", default="/tmp/MNIST_train")
-    parser.add_argument("--batch_size", type=int, default=100)
-    parser.add_argument("--epochs", type=int, default=10)
-    parser.add_argument("--prepare", dest='just_data', action="store_true")
-    parser.add_argument("--test", action="store_true")
+#    parser.add_argument("--data-dir", default="/tmp/MNIST_data",)
+#    parser.add_argument("--run-dir", default="/tmp/MNIST_train")
+#    parser.add_argument("--batch_size", type=int, default=100)
+#    parser.add_argument("--epochs", type=int, default=10)
+#    parser.add_argument("--prepare", dest='just_data', action="store_true")
+#    parser.add_argument("--test", action="store_true")
     FLAGS, _ = parser.parse_known_args()
 
 def init_data():
@@ -52,12 +52,12 @@ def export_saved_model():
 if __name__ == "__main__":
     init_flags()
     init_data()
-    if FLAGS.just_data:
-        pass
-    elif FLAGS.test:
-        init_test()
-        test()
-    else:
-        init_train()
-        train()
-        export_saved_model()
+#    if FLAGS.just_data:
+#        pass
+#    elif FLAGS.test:
+#        init_test()
+#        test()
+#    else:
+    init_train()
+    train()
+    export_saved_model()

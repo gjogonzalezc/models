@@ -40,6 +40,8 @@ def _initialize_upon_import():
 
 
 # This is called unconditionally at *module import time*...
+# Note:  this _model isn't used right now.  see _invoke() code below
+# TODO:  Use the values in the trained/pickled model
 _model = _initialize_upon_import()
 
 
@@ -49,7 +51,7 @@ def invoke(request):
     transformed_request = _transform_request(request)
 
     with monitor(labels=_labels, name="invoke"):
-        response = _model.predict(transformed_request)
+        response = _invoke(transformed_request)
 
     return _transform_response(response)
 
@@ -97,3 +99,9 @@ def _transform_request(request):
 def _transform_response(response):
     response_json = json.dumps(response)
     return response_json
+
+if __name__ == '__main__':
+    with open('./pipeline_test_request.json', 'rb') as fb:
+        request_bytes = fb.read()
+        response_bytes = invoke(request_bytes)
+        print(response_bytes)
